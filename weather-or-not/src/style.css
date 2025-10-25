@@ -22,3 +22,20 @@ body {
   margin-bottom: 10px;
 }
 
+.temp {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.city {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.theme-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+}

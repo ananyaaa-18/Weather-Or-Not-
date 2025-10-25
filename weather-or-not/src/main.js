@@ -1,18 +1,30 @@
-const { invoke } = window.__TAURI__.core;
+const API_KEY = "YOUR_OPENWEATHER_API_KEY";
 
-let greetInputEl;
-let greetMsgEl;
+async function getWeather() {
+  const pos = await new Promise(r => navigator.geolocation.getCurrentPosition(r));
+  const { latitude, longitude } = pos.coords;
 
-async function greet() {
-  // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-  greetMsgEl.textContent = await invoke("greet", { name: greetInputEl.value });
+  const res = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
+  );
+  const data = await res.json();
+
+  document.getElementById("temp").textContent = Math.round(data.main.temp) + "°C";
+  document.getElementById("city").textContent = data.name;
+
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    greet();
-  });
-});
+getWeather();
+
+const themes = [
+  { img: "assets/chopper.png", bg: "#ffd7ef" },
+  { img: "assets/luffy.png", bg: "#fff5a5" },
+  { img: "assets/kuromi.png", bg: "#f5d9ff" }
+];
+
+let i = 0;
+document.getElementById("changeTheme").onclick = () => {
+  i = (i + 1) % themes.length;
+  document.body.style.background = themes[i].bg;
+  document.getElementById("character").src = themes[i].img;
+};
