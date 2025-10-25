@@ -1,3 +1,7 @@
+:root {
+  --accent: #B4E4DD;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background: transparent;
@@ -15,6 +19,9 @@ body {
   text-align: center;
   width: 180px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 25px var(--accent);
+  transition: 0.3s ease;
 }
 
 .character {
@@ -38,4 +45,9 @@ body {
   padding: 6px 10px;
   cursor: pointer;
   font-size: 13px;
+}
+
+.theme-btn:hover {
+  background: var(--accent);
+  color: white;
 }
