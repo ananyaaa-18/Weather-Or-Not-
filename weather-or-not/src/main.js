@@ -30,7 +30,7 @@ let themeIndex = 0;
 
 function applyTheme(index) {
   const theme = themes[index];
-  document.body,style,background = theme.bg;
+  document.body.style.background = theme.bg;
   characterEl.src = theme.character;
   document.documentElement.style.setProperty("--accent", theme.accent);
 }
