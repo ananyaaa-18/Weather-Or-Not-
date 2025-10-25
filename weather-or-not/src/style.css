@@ -1,0 +1,24 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.widget {
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(14px);
+  padding: 18px;
+  border-radius: 20px;
+  text-align: center;
+  width: 180px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.character {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
