@@ -1,24 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title> Weather </title>
+    <meta charset="UTF-8">
+    <title>Weather Or Not ?</title>
     <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
     <div class="widget">
-      <img id="character" class="character" src="assets/chopper.png">
+      <div class = "theme-select">
+        <button data-theme="chopper">Chopper</button>
+        <button data-theme="luffy">Luffy</button>
+        <button data-theme="kuromi">Kuromi</button>
+      </div>
 
-      <div class="temp" id="temp">--°C</div>
-      <div class="city" id="city">Loading...</div>
+      <div class="top-bar">
+        <h2 class="title">Weather Or Not?</h2>
+        <div class="unit-toggle">
+          <button id="cBtn" class="active">°C</button>
+          <button id="fBtn">°F</button>
+        </div>
+      </div>
 
-      <button id="changeTheme" class="theme-btn">Change Theme 💗</button>
+      <img id="character" class="sprite" src="assets/chopper.png" alt="Character">
+
+      <div class="bubble">
+        <p id="weatherText">Finding your weather...</p>
+      </div>
 
     </div>
 
     <script src="main.js"></script>
 
   </body>
+
 </html>
