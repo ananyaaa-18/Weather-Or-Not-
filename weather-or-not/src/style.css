@@ -1,10 +1,47 @@
+/* THEME COLORS */
+
 :root {
-  --accent: #B4E4DD;
+  --bg: #FFEAFF;
+  --border: #B48DE8;
+  --text: #5B4A7A;
+  --accent: #D9C2FF;
+  --highlight: #FFF4Fe;
+}
+
+body.chopper {
+  --bg: #FFE0F7;
+  --border: #FFA2DF;
+  --text: #7D4165;
+  --accent: #FFC4E9;
+  --highlight: #FFF3FB;
+}
+
+body.luffy {
+  --bg: #FFEFE3;
+  --border: #FFB87A;
+  --text: #8B4A20;
+  --accent: #FFD2A9;
+  --ighlight: #FFF7F0;
+}
+
+body.kuromi {
+  --bg: #F3EAFF;
+  --border: #BDA6FF;
+  --text: #4B3C63;
+  --accent: #D2BFFF;
+  --highlight: #FAF6FF;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-  background: transparent;
+  background: #F8EAFF;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,42 +49,63 @@ body {
 }
 
 .widget {
-  background: rgba(255,255,255,0.5);
-  backdrop-filter: blur(14px);
+  width: 280px;
   padding: 18px;
-  border-radius: 20px;
+  background: var(--bg);
   text-align: center;
-  width: 180px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  border: 2px solid var(--accent);
-  box-shadow: 0 0 25px var(--accent);
-  transition: 0.3s ease;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  border: 3px solid var(--border);
 }
 
-.character {
-  width: 100px;
-  margin-bottom: 10px;
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.temp {
-  font-size: 24px;
-  font-weight: 700;
+.title {
+  font-size: 20px;
+  color: var(--text);
 }
 
-.city {
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-
-.theme-btn {
-  border: none;
-  border-radius: 10px;
-  padding: 6px 10px;
-  cursor: pointer;
-  font-size: 13px;
-}
-
-.theme-btn:hover {
+.unit-toggle button {
   background: var(--accent);
-  color: white;
+  border: none;
+  padding: 4px 8px;
+  margin-left: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text)
+}
+
+.unit-toggle .active {
+  width: 150px;
+  margin: 12px auto;
+  image-rendering: pixelated;
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+.bubble {
+  background: white;
+  border-radius: 14px;
+  padding: 12px;
+  border: 2px solid var(--border);
+  color: vaR(--text);
+  font-size: 15px;
+}
+
+
+.theme-select button {
+  background: var(--accent);
+  border: none;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  cursor: pointer;
 }
