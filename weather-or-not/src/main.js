@@ -1,65 +1,58 @@
-const API_KEY = "YOUR_OPENWEATHER_API_KEY";
+const weatherText = document.getElementById("weatherText");
+const character = document.getElementById("character");
 
-const tempEl = document.getElementById("temp");
-const cityEl = document.getElementById("city");
-const characterEl = document.getElementById("character");
-const themeBtn = document.getElementById("changeTheme");
+const themes = {
+  chopper: "assets/chopper.png",
+  luffyL "assets/luffy.png",
+  kuromi: "assets/kuromi.png"
+};
 
-const themes = [
-  { 
-    name: "chopper",
-    bg: "#FEE7F2",
-    accent: "#B4E4DD", 
-    character: "assets/chopper.png" 
-  },
-  { 
-    name: "luffy", 
-    bg: "#FFF6B7",
-    accent: "#8ED1FF",
-    character: "assets/luffy.png"
-  },
-  {
-    name: "kuromi", 
-    bg: "#E9D9FF",
-    accent: "#2B2B30",
-    character: "assets/kuromi.png"
-  }
-];
-
-let themeIndex = 0;
-
-function applyTheme(index) {
-  const theme = themes[index];
-  document.body.style.background = theme.bg;
-  characterEl.src = theme.character;
-  document.documentElement.style.setProperty("--accent", theme.accent);
-}
-
-
-async function getWeather() {
-  if (!navigator.geolocation) {
-    cityEl.textContent = "Location unavailable";
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(async (pos) => {
-    const { latitude, longitude } = pos.coords;
-    const res = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
-  );
-
-  const data = await res.json();
-
-  tempEl.textContent = Math.round(data.main.temp) + "°C";
-  cityEl.textContent = data.name;
-
+document.querySelectorAll(".theme-select button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.body.className = btn.dataset.theme;
+    character.src = themes[btn.dataset.theme];
   });
-}
-
-themeBtn.addEventListener("click", () => {
-  themeIndex = (themeIndex + 1) % themes.length;
-  applyTheme(themeIndex);
 });
 
-applyTheme(0);
-getWeather();
+let useCelsius = true;
+document.getElementById("cBtn").onclick = () => {
+  useCelsius = true;
+  document.getElementById("cBtn").classList.add("active");
+  document.getElementById("fBtn").classList.remove("active"); 
+};
+
+document.getElementById("fBtn").onclick = () => {
+  useCelsius = false;
+  document.getElementById("fBtn").classList.add("active");
+  document.getElementById("cBtn").classList.remove("active");
+};
+
+navigator.geolocation.getCurrentPosition(success, fail);
+
+function fail() {
+  weatherText.textContent = "Unable to get location";
+}
+
+async function success(pos) {
+  const { latitude, longitude } = pos.coords;
+
+  const res = await featch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
+  const data = await res.json();
+  const tempC = data.current_weather.temperature;
+  const condition = data.current_weather.weathercode;
+
+  const text = interpretWeather(condition);
+
+  setInterval( () => {
+    let temp = useCelsius ? tempC : (tempC * 9/5 + 32);
+    let unit = useCelsius ? "°C" : "°F";
+    weatherText.textContent = `${text} (${Math.round(temp)}${unit})`;
+  }, 200);
+}
+
+function interpretWeather(code) {
+  if (code === 0) return "It's ☀️ and clear!";
+  if (code <= 3) return "Partly ☁️ today!";
+  if (code <= 55) return "A little 🌧️ outside.";
+  return "Stay cozy 💗";
+}
