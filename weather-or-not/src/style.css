@@ -113,3 +113,11 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
+
+.weather-icon {
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated; 
+  vertical-align: middle;
+  margin-right: 8px;
+}

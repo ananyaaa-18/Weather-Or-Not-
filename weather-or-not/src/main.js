@@ -2,9 +2,9 @@ const weatherText = document.getElementById("weatherText");
 const character = document.getElementById("character");
 
 const themes = {
-  chopper: "assets/chopper.png",
-  luffy: "assets/luffy.png",
-  kuromi: "assets/kuromi.png"
+  chopper: "assets/sprites/chopper.png",
+  luffy: "assets/sprites/luffy.png",
+  kuromi: "assets/sprites/kuromi.png"
 };
 
 document.querySelectorAll(".theme-select button").forEach(btn => {
@@ -46,13 +46,35 @@ async function success(pos) {
   setInterval( () => {
     let temp = useCelsius ? tempC : (tempC * 9/5 + 32);
     let unit = useCelsius ? "°C" : "°F";
-    weatherText.textContent = `${text} (${Math.round(temp)}${unit})`;
+    weatherText.innerHTML = `${text} (${Math.round(temp)}${unit})`;
   }, 200);
 }
 
 function interpretWeather(code) {
-  if (code === 0) return "It's ☀️ and clear!";
-  if (code <= 3) return "Partly ☁️ today!";
-  if (code <= 55) return "A little 🌧️ outside.";
-  return "Stay cozy 💗";
+
+  if (code === 0) {
+    return `<img src="assets/weather-emotes/rainbow.png" class="weather-icon"> It's a clear sky today!`;
+  }
+  else if (code === 1) {
+    return `<img src="assets/weather-emotes/sunny.png" class="weather-icon"> It's sunny today!`;
+  }
+  else if (code >= 2 && code <= 3) {
+    return `<img src="assets/weather-emotes/cloudy.png" class="weather-icon"> It's partly cloudy today!`;
+  }
+  else if (code >= 51 && code <= 67) {
+    return `<img src="assets/weather-emotes/rain.png" class="weather-icon"> It's a rainy day~`;
+  }
+  else if (code >= 71 && code <= 77) {
+    return `<img src="assets/weather-emotes/star-moon.png" class="weather-icon"> Snow is falling!`;
+  }
+  else if (code >=80 && code <= 82) {
+    return `<img src="assets/weather-emotes/waterdrop.png" class="weather-icon"> Incoming Rain Showers!`;
+  }
+  else if (code >= 95 && code <= 99) {
+    return `<img src="assets/weather-emotes/thunder.png" class="weather-icon"> Incoming Thunderstorm Alert!`;
+  }
+  else {
+    return "Stay cozy 💗";
+  }
 }
+
