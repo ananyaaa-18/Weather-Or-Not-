@@ -36,7 +36,7 @@ function fail() {
 async function success(pos) {
   const { latitude, longitude } = pos.coords;
 
-  const res = await featch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
+  const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
   const data = await res.json();
   const tempC = data.current_weather.temperature;
   const condition = data.current_weather.weathercode;
