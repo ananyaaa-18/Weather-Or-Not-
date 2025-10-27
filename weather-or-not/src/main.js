@@ -3,7 +3,7 @@ const character = document.getElementById("character");
 
 const themes = {
   chopper: "assets/chopper.png",
-  luffyL "assets/luffy.png",
+  luffy: "assets/luffy.png",
   kuromi: "assets/kuromi.png"
 };
 
