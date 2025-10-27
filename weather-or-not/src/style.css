@@ -87,7 +87,7 @@ body {
 
 @keyframes float {
   0% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  50% { transform: translateY(6px); }
   100% { transform: translateY(0); }
 }
 
@@ -100,6 +100,10 @@ body {
   font-size: 15px;
 }
 
+#character {
+  margin-right: 70%;
+  padding: 35px;
+}
 
 .theme-select button {
   background: var(--accent);
