@@ -7,6 +7,25 @@ const themes = {
   kuromi: "assets/sprites/kuromi.png"
 };
 
+function greeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning ☀️";
+  if (hour < 18) return "Good afternoon 🌷";
+  return "Good evening 🌙";
+}
+
+weatherText.innerHTML = `${greeting()}<br>${text}`;
+
+function typeText(element, text) {
+  element.innerHTML = "";
+  let i = 0;
+  const interval = setInterval(() => {
+    element.innerHTML += text[i];
+    i++;
+    if (i >= text.length) clearInterval(interval);
+  }, 30);
+}
+
 document.querySelectorAll(".theme-select button").forEach(btn => {
   btn.addEventListener("click", () => {
     document.body.className = btn.dataset.theme;
@@ -26,16 +45,6 @@ document.getElementById("fBtn").onclick = () => {
   document.getElementById("fBtn").classList.add("active");
   document.getElementById("cBtn").classList.remove("active");
 };
-
-function typeText(element, text) {
-  element.innerHTML = "";
-  let i = 0;
-  const interval = setInterval(() => {
-    element.innerHTML += text[i];
-    i++;
-    if (i >= text.length) clearInterval(interval);
-  }, 30);
-}
 
 navigator.geolocation.getCurrentPosition(success, fail);
 
