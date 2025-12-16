@@ -1,3 +1,7 @@
+let musicPlaying = false;
+const musicBtn = document.getElementById("musicBtn");
+const bgMusic = document.getElementById("bgMusic");
+
 const weatherText = document.getElementById("weatherText");
 const character = document.getElementById("character");
 
