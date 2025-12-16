@@ -7,25 +7,6 @@ const themes = {
   kuromi: "assets/sprites/kuromi.png"
 };
 
-function greeting() {
-  const hour = new Date().getHours();
-  if (hour < 12) return "Good morning ☀️";
-  if (hour < 18) return "Good afternoon 🌷";
-  return "Good evening 🌙";
-}
-
-weatherText.innerHTML = `${greeting()}<br>${text}`;
-
-function typeText(element, text) {
-  element.innerHTML = "";
-  let i = 0;
-  const interval = setInterval(() => {
-    element.innerHTML += text[i];
-    i++;
-    if (i >= text.length) clearInterval(interval);
-  }, 30);
-}
-
 document.querySelectorAll(".theme-select button").forEach(btn => {
   btn.addEventListener("click", () => {
     document.body.className = btn.dataset.theme;
@@ -65,7 +46,7 @@ async function success(pos) {
   setInterval( () => {
     let temp = useCelsius ? tempC : (tempC * 9/5 + 32);
     let unit = useCelsius ? "°C" : "°F";
-    typeText(weatherText, `${text} (${Math.round(temp)}${unit})`);
+    weatherText.innerHTML = `${text} (${Math.round(temp)}${unit})`;
   }, 200);
 }
 
