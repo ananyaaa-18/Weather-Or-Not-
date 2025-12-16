@@ -87,8 +87,8 @@ body {
 }
 
 .sprite {
-  max-width: 140px;
-  max-height: 140px;
+  max-width: 320px;
+  max-height: 320px;
   image-rendering: pixelated;
   animation: float 2s ease-in-out infinite;
 }
