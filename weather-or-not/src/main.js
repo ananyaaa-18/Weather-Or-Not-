@@ -46,7 +46,7 @@ async function success(pos) {
   setInterval( () => {
     let temp = useCelsius ? tempC : (tempC * 9/5 + 32);
     let unit = useCelsius ? "°C" : "°F";
-    weatherText.innerHTML = `${text} (${Math.round(temp)}${unit})`;
+    typeText(weatherText, `${text} (${Math.round(temp)}${unit})`);
   }, 200);
 }
 
@@ -78,3 +78,12 @@ function interpretWeather(code) {
   }
 }
 
+function typeText(element, text) {
+  element.innerHTML = "";
+  let i = 0;
+  const interval = setInterval(() => {
+    element.innerHTML += text[i];
+    i++;
+    if (i >= text.length) clearInterval(interval);
+  }, 30);
+}
