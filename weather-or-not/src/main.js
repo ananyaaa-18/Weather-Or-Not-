@@ -77,3 +77,17 @@ function interpretWeather(code) {
     return "Stay cozy 💗";
   }
 }
+
+function toggleMusic() {
+  if (!musicPlaying) {
+    bgMusic.play().catch( () => {});
+    musicBtn.textContent = "🔇 Stop Music";
+  }
+  else {
+    bgMusic.pause();
+    musicBtn.textContent = "🎵 Play Music";
+  }
+  musicPlaying = !musicPlaying;
+}
+
+musicBtn.addEventListener("click", toggleMusic);
