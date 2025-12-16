@@ -27,6 +27,16 @@ document.getElementById("fBtn").onclick = () => {
   document.getElementById("cBtn").classList.remove("active");
 };
 
+function typeText(element, text) {
+  element.innerHTML = "";
+  let i = 0;
+  const interval = setInterval(() => {
+    element.innerHTML += text[i];
+    i++;
+    if (i >= text.length) clearInterval(interval);
+  }, 30);
+}
+
 navigator.geolocation.getCurrentPosition(success, fail);
 
 function fail() {
@@ -76,14 +86,4 @@ function interpretWeather(code) {
   else {
     return "Stay cozy 💗";
   }
-}
-
-function typeText(element, text) {
-  element.innerHTML = "";
-  let i = 0;
-  const interval = setInterval(() => {
-    element.innerHTML += text[i];
-    i++;
-    if (i >= text.length) clearInterval(interval);
-  }, 30);
 }

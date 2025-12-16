@@ -58,6 +58,15 @@ body {
   border-radius: 18px;
 }
 
+.widget::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#ffffff55 1px, transparent 1px);
+  background-size: 16px 16px;
+  pointer-events: none;
+}
+
 .widget:hover {
   box-shadow: 0 0 25px rgba(180, 141, 232, 0.4);
 }
